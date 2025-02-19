@@ -3,24 +3,24 @@ import { useState } from "react";
 
 
 const Create = () => {
-    const [FormData , setFormData] = useState({
-      address:"",
-      bedrooms :null,
-         
-      created_at :new Date().toISOString(),
-            kitchens:null,
-      living_rooms:null,
-      toilets:null,
-      price:"",      
-      status:"available",
-      
-      
-    })
-    const handleChange = (e) => {
-      setFormData({
-          ...FormData,
-          [e.target.name]: e.target.value
-      });
+  const [FormData, setFormData] = useState({
+    address: "",
+    bedrooms: null,
+
+    created_at: new Date().toISOString(),
+    kitchens: null,
+    living_rooms: null,
+    toilets: null,
+    price: "",
+    status: "available",
+
+
+  })
+  const handleChange = (e) => {
+    setFormData({
+      ...FormData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = (e) => {
@@ -28,23 +28,23 @@ const Create = () => {
     delete FormData.id;
 
     axios
-    .post(`https://real-estate-api-64hf.onrender.com/api/properties` , FormData)
-    .then((res) => {
-      setFormData({
-        address:"",
-      bedrooms :null,
-      kitchens:null,
-      living_rooms:null,
-      toilets:null,
-      price:"",      
-      status:"available"
+      .post(`https://real-estate-api-64hf.onrender.com/api/properties`, FormData)
+      .then((res) => {
+        setFormData({
+          address: "",
+          bedrooms: null,
+          kitchens: null,
+          living_rooms: null,
+          toilets: null,
+          price: "",
+          status: "available"
+        });
+        console.log("Réponse du serveur :", res.data);
       });
-      console.log("Réponse du serveur :", res.data);
-    });
-      
-        
-    
-};
+
+
+
+  };
 
   return (
     <div>
@@ -68,13 +68,20 @@ const Create = () => {
                       Type
                     </label>
                     <div className="relative">
-                      <input
-                        type="text" required
+
+                      <select
                         id="type"
-                        name="type" value={FormData.type} onChange={handleChange}
+                        name="type"
+                        value={FormData.type}
+                        onChange={handleChange}
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                        
-                      />
+                      >
+                        <option value="option1">Appartement</option>
+                        <option value="option2">Studio</option>
+                        <option value="option3">Seireteih</option>
+                        <option value="option3">Wecomundo</option>
+                      </select>
+
                     </div>
 
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -86,7 +93,7 @@ const Create = () => {
                         id="bedrooms" value={FormData.bedrooms} onChange={handleChange}
                         name="bedrooms"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                       
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -99,7 +106,7 @@ const Create = () => {
                         id="kitchens"
                         name="kitchens"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                        
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -112,7 +119,7 @@ const Create = () => {
                         id="living_rooms"
                         name="living_rooms"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                       
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -125,7 +132,7 @@ const Create = () => {
                         id="toilets"
                         name="toilets"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                        
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -138,7 +145,7 @@ const Create = () => {
                         id="price"
                         name="price"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                      
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
@@ -151,22 +158,25 @@ const Create = () => {
                         id="address"
                         name="address"
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                       
+
                       />
                     </div>
                     <label className="block mb-2 ml-1 font-bold dark:text-white text-sm">
                       status
                     </label>
                     <div className="relative">
-                      <input
-                        type="text" required
-                        value={FormData.status} onChange={handleChange}
-                        
+                      <select
                         id="status"
                         name="status"
+                        value={FormData.status}
+                        onChange={handleChange}
                         className="block shadow-sm px-4 py-3 border-2 border-gray-200 focus:border-blue-500 rounded-md focus:ring-blue-500 w-full text-sm"
-                       
-                      />
+                      >
+                        <option value="option1">occuped</option>
+                        <option value="option2">available</option>
+                        {/* <option value="option3">Option 3</option> */}
+                      </select>
+
                     </div>
                   </div>
                   <button

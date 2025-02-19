@@ -1,5 +1,5 @@
 
-import { BrowserRouter , Routes, Route  } from 'react-router-dom'
+import { BrowserRouter , Routes, Route ,Outlet  } from 'react-router-dom'
 import './App.css'
 import Homes from './Pages/Homes'
 import Detail from './Pages/detail'
@@ -11,9 +11,12 @@ function App() {
    
     <BrowserRouter>
     <Routes>    
+      <Route element={<NavbarMenu />}>
+     
         <Route path='/' element={<Homes />}  />
         <Route path='/detail'  element={<Detail />} />
         <Route path='/create' element={<Create />}  />
+        </Route>
       
     </Routes>
     </BrowserRouter>
