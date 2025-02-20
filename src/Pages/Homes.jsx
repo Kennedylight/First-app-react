@@ -115,6 +115,12 @@ const Homes = () => {
           <div className="inline-block min-w-full align-middle">
             <div className="relative mb-4 text-gray-500 focus-within:text-gray-900">
             </div>
+            <div className="flex justify-start p-4 w-full">
+              <Link to={"/create"}>
+              <button className="bg-green-400 px-5 py-2 rounded-lg text-white">+ Ajouter un nouvel</button>
+              </Link>
+           
+            </div>
             <div className="overflow-hidden">
               <table className="rounded-xl min-w-full">
                 <thead>
