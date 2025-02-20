@@ -1,28 +1,55 @@
 
-import { BrowserRouter , Routes, Route ,Outlet  } from 'react-router-dom'
+import { BrowserRouter , Routes, Route ,Outlet, Link  } from 'react-router-dom'
 import './App.css'
 import Homes from './Pages/Homes'
 import Detail from './Pages/detail'
 import Create from './Pages/create'
+import { createContext } from 'react'
 
 function App() {
-
+  var listeLogements = [
+    {
+      id: 1,
+      type: 'Appartement',
+      nb_salons: 2,
+      nb_douches: 2,
+      nb_chambres: 3,
+      nb_cuisines: 1,
+      loyer: 50000,
+      etat: "Occupe",
+      adresse: "Rue Cleremont feront"
+    },
+    {
+      id: 2,
+      type: 'Duplex',
+      nb_salons: 1,
+      nb_douches: 2,
+      nb_chambres: 4,
+      nb_cuisines: 1,
+      loyer: 200000,
+      etat: "Occupe",
+      adresse: "Rue Boulevard"
+}
+]
   return (
-   
+    <AppContext.Provider value={listeLogements}>
     <BrowserRouter>
     <Routes>    
       <Route element={<NavbarMenu />}>
      
-        <Route path='/' element={<Homes />}  />
-        <Route path='/detail'  element={<Detail />} />
-        <Route path='/create' element={<Create />}  />
+        <Route path={'/'} element={<Homes />}  />
+        <Route path={'/detail/:id'}  element={<Detail />} />
+        <Route path={'/create'} element={<Create />}  />
         </Route>
       
     </Routes>
     </BrowserRouter>
+    </AppContext.Provider>
     
   )
 }
+var AppContext = createContext([])
+export {AppContext}
   const NavbarMenu = () =>{
       return (
         <div>
@@ -41,15 +68,12 @@ function App() {
              </div>
        
             
-             <nav className="hidden md:flex md:flex-grow justify-center">
+             <nav className="hidden md:flex md:flex-grow">
                <ul className="flex justify-center space-x-4 text-white">
-                 <li><a href="#home" className="font-bold hover:text-secondary">Home</a></li>
-                 <li><a href="#aboutus" className="font-bold hover:text-secondary">About us</a></li>
-                 <li><a href="#results" className="font-bold hover:text-secondary">Results</a></li>
-                 <li><a href="#reviews" className="font-bold hover:text-secondary">Reviews</a></li>
-                 <li><a href="#portfolio" className="font-bold hover:text-secondary">Portfolio</a></li>
-                 <li><a href="#team" className="font-bold hover:text-secondary">Team</a></li>
-                 <li><a href="#contact" className="font-bold hover:text-secondary">Contact</a></li>
+                 <Link to={"/"}>
+                 <li><a href="" className="font-bold hover:text-secondary">Home</a></li>
+                 </Link>
+               
                </ul>
              </nav>
              <div className="hidden lg:flex items-center space-x-4">
